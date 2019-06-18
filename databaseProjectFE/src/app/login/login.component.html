@@ -1,0 +1,40 @@
+<body style="margin:0 auto">
+  <div class="col-5" id="form">
+    <form #loginForm="ngForm" class="form-login">
+      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+
+      <div class="form-input">
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input [(ngModel)]="userLogin.email" #email='ngModel' name="email" type="email" id="inputEmail"
+          class="form-control" placeholder="Email address" required
+          [pattern]="'^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'">
+        <div *ngIf='loginForm.submitted && email.invalid'>
+          <div class="alert alert-danger" *ngIf='loginForm.submitted && email.errors.required'>
+            Email required.
+          </div>
+
+          <div class="alert alert-danger" *ngIf='email.errors?.pattern?.requiredPattern'>
+            Please provide a valid email address.
+          </div>
+        </div>
+      </div>
+      <div class="form-input">
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input [(ngModel)]="userLogin.password" #password='ngModel' name="password" type="password" id="inputPassword"
+          class="form-control" placeholder="Password" required>
+        <div *ngIf='loginForm.submitted && password.invalid'>
+          <div class="alert alert-danger" *ngIf='loginForm.submitted && password.errors.required'>
+            Password required.
+          </div>
+        </div>
+      </div>
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" (click)="checkUser(loginForm.valid)" type="submit">Sign
+        in</button>
+    </form>
+  </div>
+</body>
