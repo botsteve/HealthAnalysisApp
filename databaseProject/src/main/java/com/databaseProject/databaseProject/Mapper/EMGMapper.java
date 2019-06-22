@@ -1,14 +1,16 @@
 package com.databaseProject.databaseProject.Mapper;
 
 import com.databaseProject.databaseProject.Dto.EKGDto;
+import com.databaseProject.databaseProject.Dto.EMGDto;
 import com.databaseProject.databaseProject.Model.EKG;
+import com.databaseProject.databaseProject.Model.EMG;
 
 public class EMGMapper {
-    public static  EKG fromDtoToEntity(EKGDto ekgDto){
-        return new EKG(ekgDto.getVoltageValue(),ekgDto.getTimeValue());
+    public static EMG fromDtoToEntity(EMGDto emgDto){
+        return new EMG(emgDto.getVoltageValue(),emgDto.getTimeValue());
     }
 
-    public static EKGDto fromEntityToDto(EKG ekg){
-        return new EKGDto(ekg.getVoltageValue(),ekg.getTimeValue());
+    public static EMGDto fromEntityToDto(EMG emg){
+        return new EMGDto(emg.getVoltageValue(),emg.getTimeValue());
     }
 }

@@ -1,15 +1,13 @@
 package com.databaseProject.databaseProject.Dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import java.time.LocalTime;
-
 public class EKGDto {
     private double voltageValue;
-    private LocalTime timeValue;
+    private long timeValue;
 
-    public EKGDto(double voltageValue, LocalTime timeValue) {
+    public EKGDto() {
+    }
+
+    public EKGDto(double voltageValue, long timeValue) {
         this.voltageValue = voltageValue;
         this.timeValue = timeValue;
     }
@@ -22,11 +20,12 @@ public class EKGDto {
         this.voltageValue = voltageValue;
     }
 
-    public LocalTime getTimeValue() {
+    public long getTimeValue() {
         return timeValue;
     }
 
-    public void setTimeValue(LocalTime timeValue) {
+    public void setTimeValue(long timeValue) {
         this.timeValue = timeValue;
     }
+
 }

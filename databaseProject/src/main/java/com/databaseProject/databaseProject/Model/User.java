@@ -1,13 +1,13 @@
 package com.databaseProject.databaseProject.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
     private String email;
     private String firstName;
@@ -16,18 +16,48 @@ public class User {
     private Integer isLogged;
     private Integer isAdmin;
 
-    public User() {
-        this.isLogged = 0;
-        this.isAdmin = 0;
-    }
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = javax.persistence.CascadeType.MERGE, orphanRemoval = true)
+    private List<TempSensor> temperatures = new ArrayList<TempSensor>();
 
-    public User(String email, String firstName, String lastName, String password, Integer isLogged, Integer isAdmin) {
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = javax.persistence.CascadeType.MERGE, orphanRemoval = true)
+    private List<EKG> ekgs = new ArrayList<EKG>();
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = javax.persistence.CascadeType.MERGE, orphanRemoval = true)
+    private List<EMG> emgs = new ArrayList<EMG>();
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = javax.persistence.CascadeType.MERGE, orphanRemoval = true)
+    private List<GPS> gps = new ArrayList<GPS>();
+
+    public User(int id, String email, String firstName, String lastName, String password, Integer isLogged, Integer isAdmin, List<TempSensor> temperatures, List<EKG> ekgs, List<EMG> emgs, List<GPS> gps) {
+        this.id = id;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
         this.isLogged = isLogged;
         this.isAdmin = isAdmin;
+        this.temperatures = temperatures;
+        this.ekgs = ekgs;
+        this.emgs = emgs;
+        this.gps = gps;
+    }
+
+    public User() {
+        this.isLogged = 0;
+        this.isAdmin = 0;
+    }
+
+    public User(String email, String firstName, String lastName, String password, Integer isLogged, Integer isAdmin, List<TempSensor> temperatures, List<EKG> ekgs, List<EMG> emgs, List<GPS> gps) {
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.isLogged = isLogged;
+        this.isAdmin = isAdmin;
+        this.temperatures = temperatures;
+        this.ekgs = ekgs;
+        this.emgs = emgs;
+        this.gps = gps;
     }
 
     public int getId() {
@@ -86,4 +116,35 @@ public class User {
         this.isAdmin = isAdmin;
     }
 
+    public List<TempSensor> getTemperatures() {
+        return temperatures;
+    }
+
+    public void setTemperatures(List<TempSensor> temperatures) {
+        this.temperatures = temperatures;
+    }
+
+    public List<EKG> getEkgs() {
+        return ekgs;
+    }
+
+    public void setEkgs(List<EKG> ekgs) {
+        this.ekgs = ekgs;
+    }
+
+    public List<EMG> getEmgs() {
+        return emgs;
+    }
+
+    public void setEmgs(List<EMG> emgs) {
+        this.emgs = emgs;
+    }
+
+    public List<GPS> getGps() {
+        return gps;
+    }
+
+    public void setGps(List<GPS> gps) {
+        this.gps = gps;
+    }
 }

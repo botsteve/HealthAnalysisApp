@@ -9,7 +9,6 @@ import { User } from '../model/user';
 export class UserService {
   private baseUrl: string = 'http://localhost:8080/users';
   loggedUser: User = new User();
-  isLogged: boolean = false;
 
   constructor(private httpClient: HttpClient) {
 
@@ -47,7 +46,11 @@ export class UserService {
     return this.httpClient.post<User>(this.baseUrl + '/loggedIn', user);
   }
 
-  updateUserLoggedIn(email: string): Observable<User> {
-    return this.httpClient.put<User>(this.baseUrl + '/update?email=', email);
+  updateUserLoggedIn(email: String): Observable<User> {
+    return this.httpClient.put<User>(this.baseUrl + '/user', email);
+  }
+
+  updateUserLoggingOut(): Observable<User> {
+    return this.httpClient.put<User>(this.baseUrl + '/userLoggingOut',null);
   }
 }

@@ -1,8 +1,7 @@
 package com.databaseProject.databaseProject.Dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDto {
 
@@ -13,9 +12,27 @@ public class UserDto {
     private Integer isLogged;
     private Integer isAdmin;
 
+    private List<TempSensorDto> temperatures = new ArrayList<TempSensorDto>();
+    private List<EKGDto> ekgs = new ArrayList<EKGDto>();
+    private List<EMGDto> emgs = new ArrayList<EMGDto>();
+    private List<GPSDto> gps = new ArrayList<GPSDto>();
+
     public UserDto() {
         this.isLogged = 0;
         this.isAdmin = 0;
+    }
+
+    public UserDto(String email, String firstName, String lastName, String password, Integer isLogged, Integer isAdmin, List<TempSensorDto> temperatures, List<EKGDto> ekgs, List<EMGDto> emgs, List<GPSDto> gps) {
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.isLogged = isLogged;
+        this.isAdmin = isAdmin;
+        this.temperatures = temperatures;
+        this.ekgs = ekgs;
+        this.emgs = emgs;
+        this.gps = gps;
     }
 
     public UserDto(String email, String firstName, String lastName, String password, Integer isLogged, Integer isAdmin) {
@@ -73,6 +90,39 @@ public class UserDto {
 
     public void setIsAdmin(Integer isAdmin) {
         this.isAdmin = isAdmin;
+    }
+
+
+    public List<TempSensorDto> getTemperatures() {
+        return temperatures;
+    }
+
+    public void setTemperatures(List<TempSensorDto> temperatures) {
+        this.temperatures = temperatures;
+    }
+
+    public List<EKGDto> getEkgs() {
+        return ekgs;
+    }
+
+    public void setEkgs(List<EKGDto> ekgs) {
+        this.ekgs = ekgs;
+    }
+
+    public List<EMGDto> getEmgs() {
+        return emgs;
+    }
+
+    public void setEmgs(List<EMGDto> emgs) {
+        this.emgs = emgs;
+    }
+
+    public List<GPSDto> getGps() {
+        return gps;
+    }
+
+    public void setGps(List<GPSDto> gps) {
+        this.gps = gps;
     }
 
 }

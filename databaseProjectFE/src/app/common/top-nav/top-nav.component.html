@@ -1,0 +1,27 @@
+<div class="menu-wrap">
+    <nav class="menu">
+      <ul class="clearfix">
+        <li>
+          <a class="nav-link" [routerLink]="['/home']" routerLinkActive="current-item">Home</a>
+        </li>
+        <li>
+          <a class="nav-link" [routerLink]="[ '/temperature' ]" routerLinkActive="current-item">Temperature</a>
+        </li>
+        <li>
+          <a class="nav-link" [routerLink]="[ '/ekg' ]" routerLinkActive="current-item">EKG</a>
+        </li>
+        <li>
+          <a class="nav-link" [routerLink]="[ '/emg' ]" routerLinkActive="current-item">EMG</a>
+        </li>
+        <li>
+          <a class="nav-link" [routerLink]="[ '/gps' ]" routerLinkActive="current-item">GPS</a>
+        </li>
+        <li>
+          <a class="nav-link" [routerLink]="[ '/my_profile' ]" routerLinkActive="current-item">MyProfile</a>
+        </li>
+        <li>
+          <a class="nav-link"  (click)="signOut()" routerLinkActive="current-item">Sign Out</a>
+        </li>
+      </ul>
+    </nav>
+  </div>

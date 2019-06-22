@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin(origins="http://localhost:4200", allowedHeaders="*")
@@ -29,8 +30,9 @@ public class UserController {
     }
 
     @GetMapping
-    public List<User> getUsers() {
-        return userRepository.findAll();
+    public List<UserDto> getUsers() {
+
+        return userRepository.findAll().stream().map(e -> UserMapper.fromEntityToDto(e)).collect(Collectors.toList());
     }
 
     @GetMapping("/loggedUser")
@@ -61,8 +63,7 @@ public class UserController {
 
     @PostMapping
     @ResponseBody
-    public User createUser(@RequestBody UserDto userDto) {
-
+    public UserDto createUser(@RequestBody UserDto userDto) {
         List<User> users = userRepository.findAll();
         List<UserDto> usersDto = new ArrayList<>();
         for (User user : users) {
@@ -72,17 +73,34 @@ public class UserController {
         if (searchUserByEmail(usersDto, userDto)) {
             return null;
         }
-
-        return userRepository.save(UserMapper.fromDtoToEntity(userDto));
+        userRepository.save(UserMapper.fromDtoToEntity(userDto));
+        return userDto;
     }
 
-    @PutMapping
-    public User updateUserLoggedIn(@RequestParam String email){
+    @PutMapping("/user")
+    @Transactional
+    public UserDto updateUserLoggedIn(@RequestBody String email){
         User user = userRepository.findByEmail(email);
         user = userRepository.getOne(user.getId());
         user.setIsLogged(1);
         userRepository.save(user);
-        return user;
+        return UserMapper.fromEntityToDto(user);
+    }
+
+    @PutMapping("/userLoggingOut")
+    @Transactional
+    public UserDto updateUserLoggingOut(){
+        List<User> users = userRepository.findAll();
+        User updatedUser = new User();
+        for (User user : users) {
+            if (user.getIsLogged() == 1) {
+                updatedUser = user;
+            }
+        }
+        updatedUser.setIsLogged(0);
+        updatedUser = userRepository.getOne(updatedUser.getId());
+        userRepository.saveAndFlush(updatedUser);
+        return UserMapper.fromEntityToDto(updatedUser);
     }
 
 }

@@ -1,17 +1,29 @@
 package com.databaseProject.databaseProject.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class GPS {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
     private double latitude;
     private double longitude;
     private double altitude;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = javax.persistence.CascadeType.MERGE)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    public GPS() {
+    }
+
+    public GPS(double latitude, double longitude, double altitude, User user) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.altitude = altitude;
+        this.user = user;
+    }
 
     public GPS(double latitude, double longitude, double altitude) {
         this.latitude = latitude;
@@ -49,5 +61,13 @@ public class GPS {
 
     public void setAltitude(double altitude) {
         this.altitude = altitude;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

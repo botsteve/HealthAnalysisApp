@@ -1,16 +1,16 @@
 package com.databaseProject.databaseProject.Dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import java.time.LocalTime;
+import com.databaseProject.databaseProject.Model.User;
 
 public class TempSensorDto {
 
     private double tempValue;
-    private LocalTime timeValue;
+    private long timeValue;
 
-    public TempSensorDto(double tempValue, LocalTime timeValue) {
+    public TempSensorDto() {
+    }
+
+    public TempSensorDto(double tempValue, long timeValue) {
         this.tempValue = tempValue;
         this.timeValue = timeValue;
     }
@@ -23,11 +23,12 @@ public class TempSensorDto {
         this.tempValue = tempValue;
     }
 
-    public LocalTime getTimeValue() {
+    public long getTimeValue() {
         return timeValue;
     }
 
-    public void setTimeValue(LocalTime timeValue) {
+    public void setTimeValue(long timeValue) {
         this.timeValue = timeValue;
     }
+
 }

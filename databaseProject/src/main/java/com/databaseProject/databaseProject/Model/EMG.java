@@ -1,19 +1,29 @@
 package com.databaseProject.databaseProject.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import java.time.LocalTime;
+import javax.persistence.*;
 
 @Entity
 public class EMG {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
     private double voltageValue;
-    private LocalTime timeValue;
+    private long timeValue;
 
-    public EMG(double voltageValue, LocalTime timeValue) {
+    @ManyToOne(fetch = FetchType.LAZY, cascade = javax.persistence.CascadeType.MERGE)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    public EMG() {
+    }
+
+    public EMG(double voltageValue, long timeValue, User user) {
+        this.voltageValue = voltageValue;
+        this.timeValue = timeValue;
+        this.user = user;
+    }
+
+    public EMG(double voltageValue, long timeValue) {
         this.voltageValue = voltageValue;
         this.timeValue = timeValue;
     }
@@ -34,11 +44,19 @@ public class EMG {
         this.voltageValue = voltageValue;
     }
 
-    public LocalTime getTimeValue() {
+    public long getTimeValue() {
         return timeValue;
     }
 
-    public void setTimeValue(LocalTime timeValue) {
+    public void setTimeValue(long timeValue) {
         this.timeValue = timeValue;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

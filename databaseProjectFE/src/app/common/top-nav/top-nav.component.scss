@@ -1,0 +1,182 @@
+
+$color-1: #3E8EDE;
+$color-2: #5f6163;
+$color-3: black;
+$color-4: #e9ecef;
+$color-5: black;
+$color-6: #CBEBFF;
+$color-7: #ebf9ff;
+
+.menu-wrap {
+  width: 100%;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+  background: #ffffff;
+  background: -moz-linear-gradient(top, #ffffff 0%, #f3f3f3 50%, #ededed 99%, #ededed 99%, #ffffff 100%);
+  background: -webkit-linear-gradient(top, #ffffff 0%,#f3f3f3 50%,#ededed 99%,#ededed 99%,#ffffff 100%);
+  background: linear-gradient(to bottom, #ffffff 0%,#f3f3f3 50%,#ededed 99%,#ededed 99%,#ffffff 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff',GradientType=0 );
+
+  .menu a:not([href]):not([tabindex]) {
+    color: $color-5;
+    cursor: default;
+    &:hover {
+      color: $color-3;
+    }
+  }
+
+}
+
+  .menu {
+    margin: 0;
+    padding: 0;
+    a:not([href]):not([tabindex]) {
+      color: $color-3;
+    }
+    > ul {
+      padding-left: 15px;
+      margin: 0;
+    }
+
+    li {
+      margin: 0;
+      list-style: none;
+      border-left: 1px solid #c9cacc;
+    }
+    li:first-child {
+      border-left: 1px solid transparent;
+    }
+
+    a {
+      transition: all linear 0.15s;
+      color: $color-5;
+      font-size: 13px;
+    }
+    li:hover > a,
+    .current-item > a {
+      text-decoration: none;
+      color: $color-3;
+    }
+    .current-item > a {
+      color: $color-3;
+    }
+
+    .arrow {
+      font-size: 11px;
+      line-height: 0%;
+    }
+
+    li:hover .sub-menu {
+      z-index: 1;
+      display: block;
+    }
+  }
+
+  .menu>ul>li {
+    float: left;
+    position: relative;
+    z-index: 9;
+  }
+
+  .menu > ul > li > a {
+    padding: 5px 15px;
+    display: inline-block;
+  }
+
+  .menu > ul > li > a.current-item,
+  .menu > ul > li:hover > a {
+    color: $color-3;
+  }
+
+
+  .sub-menu {
+    background: $color-4;
+    color: $color-5;
+    width: 200px;
+    position: absolute;
+    top: 100%;
+    left: 0px;
+    padding: 0px;
+    z-index: -1;
+    display: none;
+    transition: opacity linear 0.15s;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2);
+    border-top: 3px solid $color-2;
+
+    li {
+      display: block;
+      font-size: 14px;
+      border-left: 0px;
+    }
+
+    li a {
+      padding: 5px 15px;
+      display: block;
+    }
+
+    a.current-item  {
+      color: $color-3;
+    }
+  }
+
+  .breadcrumb {
+    padding: 0.1rem 1rem;
+    margin: 0 0 5px 0;
+
+    .breadcrumb-item {
+      cursor: pointer;
+
+      a {
+        color: $color-1;
+      }
+
+      .ng-star-inserted {
+        font-size: 13px;
+        background: transparent;
+      }
+    }
+
+    li {
+      position: relative;
+      color: $color-1;
+
+      &:first-child a {
+        color: $color-1;
+      }
+    }
+
+    li:nth-child(1),
+    li:nth-child(3):not(:last-child)>a {
+      text-decoration: underline;
+    }
+
+    li:nth-child(2)::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      cursor: default;
+    }
+
+    li:nth-child(1)::before {
+      content: '';
+    }
+
+  }
+
+  .breadcrumb-item+.breadcrumb-item {
+    padding-left: 0.2rem;
+  }
+
+  .breadcrumb-item+.breadcrumb-item::before {
+    padding-right: 0.1rem;
+  }
+
+  .arc-breadcrumb {
+    .container {
+      width: 100%;
+      max-width: 100%;
+      padding-left: 0;
+    }
+  }

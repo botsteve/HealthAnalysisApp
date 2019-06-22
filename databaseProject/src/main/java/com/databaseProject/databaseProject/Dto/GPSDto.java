@@ -1,5 +1,7 @@
 package com.databaseProject.databaseProject.Dto;
 
+import com.databaseProject.databaseProject.Model.User;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -9,6 +11,9 @@ public class GPSDto {
     private double latitude;
     private double longitude;
     private double altitude;
+
+    public GPSDto() {
+    }
 
     public GPSDto(double latitude, double longitude, double altitude) {
         this.latitude = latitude;
@@ -39,4 +44,6 @@ public class GPSDto {
     public void setAltitude(double altitude) {
         this.altitude = altitude;
     }
+
+
 }

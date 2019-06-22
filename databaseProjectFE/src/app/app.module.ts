@@ -14,13 +14,20 @@ import { RadioButtonModule } from 'primeng/components/radioButton/radioButton';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import {ToastModule} from 'primeng/toast';
+import { ToastModule } from 'primeng/toast';
+import { TopNavComponent } from './common/top-nav/top-nav.component';
+import { TemperatureComponent } from './temperature/temperature.component';
+import {TableModule} from 'primeng/table';
+import { AgGridAngular, AgGridColumn, AgGridModule } from 'ag-grid-angular';
+import {ChartModule} from 'primeng/chart';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    TopNavComponent,
+    TemperatureComponent
   ],
   imports: [
     BrowserModule,
@@ -32,8 +39,10 @@ import {ToastModule} from 'primeng/toast';
     AccordionModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    ToastModule
-
+    ToastModule,
+    TableModule,
+    AgGridModule,
+    ChartModule
   ],
   providers: [MessageService, UserService],
   bootstrap: [AppComponent]
