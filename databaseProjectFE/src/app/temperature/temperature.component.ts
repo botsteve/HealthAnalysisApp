@@ -22,8 +22,6 @@ export class TemperatureComponent implements OnInit {
   ];
 
 
-
-
   constructor(private temperatureService: TemperatureService) {
   }
 
@@ -61,12 +59,16 @@ export class TemperatureComponent implements OnInit {
     this.options = {
       title: {
         display: true,
-        text: 'My Title',
+        text: 'Graph',
         fontSize: 16
       },
       legend: {
         position: 'bottom'
       }
     };
+  }
+
+  onGridReady(params) {
+    params.api.sizeColumnsToFit();
   }
 }

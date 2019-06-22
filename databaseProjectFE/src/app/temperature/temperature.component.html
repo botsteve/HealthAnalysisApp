@@ -1,9 +1,8 @@
 <app-top-nav></app-top-nav>
 
 <ag-grid-angular style="width: 500x; height: 500px;" class="ag-theme-balham" [rowData]="rowData" rowSelection="multiple"
-  suppressMenuHide="true"  animateRows=true enableSorting=true enableFilter=true enableStatusBar=true
+  suppressMenuHide="true" animateRows=true enableSorting=true enableFilter=true enableStatusBar=true
   enableRangeSelection=true rowDragManaged=true headerHeight="50" rowHeight="40" rowGroupPanelShow="always"
-   pivotColumnGroupTotals="before" pivotRowTotals="before" [columnDefs]="columnDefs">
+  [columnDefs]="columnDefs" (gridReady)="onGridReady($event)">
 </ag-grid-angular>
-
 <p-chart type="line" [data]="data" [options]="options"></p-chart>
