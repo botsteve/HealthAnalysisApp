@@ -1,6 +1,7 @@
 package com.databaseProject.databaseProject.Model;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class TempSensor {
@@ -8,7 +9,7 @@ public class TempSensor {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
     private double tempValue;
-    private long timeValue;
+    private LocalDateTime timeValue;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = javax.persistence.CascadeType.MERGE)
     @JoinColumn(name = "user_id", nullable = false)
@@ -17,13 +18,13 @@ public class TempSensor {
     public TempSensor() {
     }
 
-    public TempSensor(double tempValue, long timeValue, User user) {
+    public TempSensor(double tempValue, LocalDateTime timeValue, User user) {
         this.tempValue = tempValue;
         this.timeValue = timeValue;
         this.user = user;
     }
 
-    public TempSensor(double tempValue, long timeValue) {
+    public TempSensor(double tempValue, LocalDateTime timeValue) {
         this.tempValue = tempValue;
         this.timeValue = timeValue;
     }
@@ -44,11 +45,11 @@ public class TempSensor {
         this.tempValue = tempValue;
     }
 
-    public long getTimeValue() {
+    public LocalDateTime getTimeValue() {
         return timeValue;
     }
 
-    public void setTimeValue(long timeValue) {
+    public void setTimeValue(LocalDateTime timeValue) {
         this.timeValue = timeValue;
     }
 

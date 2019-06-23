@@ -1,15 +1,17 @@
 package com.databaseProject.databaseProject.Dto;
 
 
+import java.time.LocalDateTime;
+
 public class EMGDto {
 
     private double voltageValue;
-    private long timeValue;
+    private LocalDateTime timeValue;
 
     public EMGDto() {
     }
 
-    public EMGDto(double voltageValue, long timeValue) {
+    public EMGDto(double voltageValue, LocalDateTime timeValue) {
         this.voltageValue = voltageValue;
         this.timeValue = timeValue;
     }
@@ -22,11 +24,11 @@ public class EMGDto {
         this.voltageValue = voltageValue;
     }
 
-    public long getTimeValue() {
+    public LocalDateTime getTimeValue() {
         return timeValue;
     }
 
-    public void setTimeValue(long timeValue) {
+    public void setTimeValue(LocalDateTime timeValue) {
         this.timeValue = timeValue;
     }
 

@@ -1,7 +1,7 @@
 package com.databaseProject.databaseProject.Model;
 
 import javax.persistence.*;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 @Entity
 public class EKG {
@@ -11,7 +11,7 @@ public class EKG {
     private int id;
 
     private double voltageValue;
-    private long timeValue;
+    private LocalDateTime timeValue;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = javax.persistence.CascadeType.MERGE)
     @JoinColumn(name = "user_id", nullable = false)
@@ -20,13 +20,13 @@ public class EKG {
     public EKG() {
     }
 
-    public EKG(double voltageValue, long timeValue, User user) {
+    public EKG(double voltageValue, LocalDateTime timeValue, User user) {
         this.voltageValue = voltageValue;
         this.timeValue = timeValue;
         this.user = user;
     }
 
-    public EKG(double voltageValue, long timeValue) {
+    public EKG(double voltageValue, LocalDateTime timeValue) {
         this.voltageValue = voltageValue;
         this.timeValue = timeValue;
     }
@@ -47,11 +47,11 @@ public class EKG {
         this.voltageValue = voltageValue;
     }
 
-    public long getTimeValue() {
+    public LocalDateTime getTimeValue() {
         return timeValue;
     }
 
-    public void setTimeValue(long timeValue) {
+    public void setTimeValue(LocalDateTime timeValue) {
         this.timeValue = timeValue;
     }
 

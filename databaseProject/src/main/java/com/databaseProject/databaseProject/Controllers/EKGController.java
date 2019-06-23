@@ -1,12 +1,13 @@
 package com.databaseProject.databaseProject.Controllers;
 
+import com.databaseProject.databaseProject.Dto.EKGDto;
 import com.databaseProject.databaseProject.Dto.TempSensorDto;
-import com.databaseProject.databaseProject.Dto.UserDto;
+import com.databaseProject.databaseProject.Mapper.EKGMapper;
 import com.databaseProject.databaseProject.Mapper.TempSensorMapper;
-import com.databaseProject.databaseProject.Mapper.UserMapper;
+import com.databaseProject.databaseProject.Model.EKG;
 import com.databaseProject.databaseProject.Model.TempSensor;
 import com.databaseProject.databaseProject.Model.User;
-import com.databaseProject.databaseProject.Repositories.TempSensorRepository;
+import com.databaseProject.databaseProject.Repositories.EKGRepository;
 import com.databaseProject.databaseProject.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,33 +18,34 @@ import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin(origins="http://localhost:4200", allowedHeaders="*")
-@RequestMapping("/temperature")
-public class TemperatureController {
+@RequestMapping("/ekg")
+public class EKGController {
+
 
     @Autowired
     private UserRepository userRepository;
 
     @Autowired
-    private TempSensorRepository tempSensorRepository;
+    private EKGRepository ekgRepository;
 
     @GetMapping
-    public List<TempSensorDto> getTemperatureForUser() {
-        List<TempSensor> listTemperatures = tempSensorRepository.findAll().stream()
+    public List<EKGDto> getEkgForUser() {
+        List<EKG> listEkg = ekgRepository.findAll().stream()
                 .filter(e -> e.getUser().getIsLogged() == 1)
                 .collect(Collectors.toList());
-        return listTemperatures.stream().map(tempSensor -> TempSensorMapper.fromEntityToDto(tempSensor)).collect(Collectors.toList());
+        return listEkg.stream().map(ekg -> EKGMapper.fromEntityToDto(ekg)).collect(Collectors.toList());
     }
 
     @PostMapping
-    public TempSensorDto insertNewTemp(@RequestBody double tempValue){
+    public EKGDto insertNewEKG(@RequestBody double voltageValue){
         User currentUser = new User();
         for (User user: userRepository.findAll()) {
             if (user.getIsLogged() == 1) {
                 currentUser = user;
             }
         }
-        TempSensor newTemp = new TempSensor(tempValue, LocalDateTime.now(),currentUser);
-        tempSensorRepository.saveAndFlush(newTemp);
-        return TempSensorMapper.fromEntityToDto(newTemp);
+        EKG newEkg = new EKG(voltageValue, LocalDateTime.now(),currentUser);
+        ekgRepository.saveAndFlush(newEkg);
+        return EKGMapper.fromEntityToDto(newEkg);
     }
 }

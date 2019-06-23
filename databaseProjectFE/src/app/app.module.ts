@@ -17,9 +17,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastModule } from 'primeng/toast';
 import { TopNavComponent } from './common/top-nav/top-nav.component';
 import { TemperatureComponent } from './temperature/temperature.component';
-import {TableModule} from 'primeng/table';
+import { TableModule } from 'primeng/table';
 import { AgGridAngular, AgGridColumn, AgGridModule } from 'ag-grid-angular';
-import {ChartModule} from 'primeng/chart';
+import { ChartModule } from 'primeng/chart';
+import { EkgComponent } from './ekg/ekg.component';
+import { EmgComponent } from './emg/emg.component';
+import { GpsComponent } from './gps/gps.component';
+import { AgmCoreModule } from '@agm/core';
+import { GMapModule } from 'primeng/gmap';
 
 @NgModule({
   declarations: [
@@ -27,7 +32,10 @@ import {ChartModule} from 'primeng/chart';
     HomeComponent,
     LoginComponent,
     TopNavComponent,
-    TemperatureComponent
+    TemperatureComponent,
+    EkgComponent,
+    EmgComponent,
+    GpsComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +50,11 @@ import {ChartModule} from 'primeng/chart';
     ToastModule,
     TableModule,
     AgGridModule,
-    ChartModule
+    ChartModule,
+    GMapModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBJLord40d1O65ZjSdH4BqTpj_85c5v7Yw'
+    })
   ],
   providers: [MessageService, UserService],
   bootstrap: [AppComponent]

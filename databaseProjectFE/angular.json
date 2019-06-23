@@ -32,7 +32,6 @@
               "styles.scss"
             ],
             "scripts": [
-              "../node_modules/chart.js/dist/Chart.js"
             ]
           },
           "configurations": {

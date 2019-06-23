@@ -1,16 +1,16 @@
 package com.databaseProject.databaseProject.Dto;
 
-import com.databaseProject.databaseProject.Model.User;
+import java.time.LocalDateTime;
 
 public class TempSensorDto {
 
     private double tempValue;
-    private long timeValue;
+    private LocalDateTime timeValue;
 
     public TempSensorDto() {
     }
 
-    public TempSensorDto(double tempValue, long timeValue) {
+    public TempSensorDto(double tempValue, LocalDateTime timeValue) {
         this.tempValue = tempValue;
         this.timeValue = timeValue;
     }
@@ -23,11 +23,11 @@ public class TempSensorDto {
         this.tempValue = tempValue;
     }
 
-    public long getTimeValue() {
+    public LocalDateTime getTimeValue() {
         return timeValue;
     }
 
-    public void setTimeValue(long timeValue) {
+    public void setTimeValue(LocalDateTime timeValue) {
         this.timeValue = timeValue;
     }
 

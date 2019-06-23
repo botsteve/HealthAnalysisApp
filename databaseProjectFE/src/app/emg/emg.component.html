@@ -7,6 +7,6 @@
 </ag-grid-angular>
 <div class="form-row">
   <p-button class="ui-button-rounded ui-button-success" label="Update" type="submit" (click)="updateValues()" ></p-button>
-  <input class="form-control col-md-2" #newTemp  (keyup.enter)="insertNewTemp(newTemp.value)" type="number" name="newTemp" placeholder="New Temp">
+  <input class="form-control col-md-2" #newEmg  (keyup.enter)="insertNewEMG(newEmg.value)" type="number" name="newEmg" placeholder="new voltage">
 </div>
 <p-chart type="line" [data]="data" [options]="options"></p-chart>

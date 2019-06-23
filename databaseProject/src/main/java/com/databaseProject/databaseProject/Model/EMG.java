@@ -1,6 +1,7 @@
 package com.databaseProject.databaseProject.Model;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class EMG {
@@ -8,7 +9,7 @@ public class EMG {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
     private double voltageValue;
-    private long timeValue;
+    private LocalDateTime timeValue;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = javax.persistence.CascadeType.MERGE)
     @JoinColumn(name = "user_id", nullable = false)
@@ -17,13 +18,13 @@ public class EMG {
     public EMG() {
     }
 
-    public EMG(double voltageValue, long timeValue, User user) {
+    public EMG(double voltageValue, LocalDateTime timeValue, User user) {
         this.voltageValue = voltageValue;
         this.timeValue = timeValue;
         this.user = user;
     }
 
-    public EMG(double voltageValue, long timeValue) {
+    public EMG(double voltageValue, LocalDateTime timeValue) {
         this.voltageValue = voltageValue;
         this.timeValue = timeValue;
     }
@@ -44,11 +45,11 @@ public class EMG {
         this.voltageValue = voltageValue;
     }
 
-    public long getTimeValue() {
+    public LocalDateTime getTimeValue() {
         return timeValue;
     }
 
-    public void setTimeValue(long timeValue) {
+    public void setTimeValue(LocalDateTime timeValue) {
         this.timeValue = timeValue;
     }
 

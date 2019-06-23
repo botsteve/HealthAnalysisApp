@@ -1,8 +1,6 @@
 package com.databaseProject.databaseProject.Mapper;
 
-import com.databaseProject.databaseProject.Dto.EKGDto;
 import com.databaseProject.databaseProject.Dto.EMGDto;
-import com.databaseProject.databaseProject.Model.EKG;
 import com.databaseProject.databaseProject.Model.EMG;
 
 public class EMGMapper {

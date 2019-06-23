@@ -10,9 +10,10 @@ import { AgGridModule } from 'ag-grid-angular';
 })
 export class TemperatureComponent implements OnInit {
   rowData: Temperature[] = [];
+  newTemp: number;
   data: any;
   options: any;
-  timeValues: number[] = [];
+  timeValues: Date[] = [];
   tempValues: number[] = [];
 
 
@@ -39,6 +40,8 @@ export class TemperatureComponent implements OnInit {
   }
 
   getValuesForChart() {
+    this.timeValues = [];
+    this.tempValues = [];
     this.rowData.forEach(element => {
       this.timeValues.push(element.timeValue);
       this.tempValues.push(element.tempValue);
@@ -70,5 +73,17 @@ export class TemperatureComponent implements OnInit {
 
   onGridReady(params) {
     params.api.sizeColumnsToFit();
+  }
+
+  updateValues(){
+    this.getTemperatures();
+  }
+
+  insertNewTemp(newTemp: number){
+    this.newTemp = newTemp;
+    console.log(this.newTemp);
+    this.temperatureService.insertNewTemp(this.newTemp).subscribe(resp => {
+      console.log(resp);
+    });
   }
 }
