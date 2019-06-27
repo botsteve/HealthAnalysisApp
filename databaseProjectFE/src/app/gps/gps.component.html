@@ -8,14 +8,11 @@
 <div class="form-row">
   <p-button class="ui-button-rounded ui-button-success" label="Update" type="submit" (click)="updateValues()">
   </p-button>
-  <input class="form-control col-md-2" #newLatitute type="number" name="newLatitute" placeholder="new Latitute">
-  <input class="form-control col-md-2" #newLongitude type="number" name="newLongitude" placeholder="new Longitude">
-  <input class="form-control col-md-2" #newAltitude type="number" name="newAltitude" placeholder="new Altitude">
+  <input class="form-control col-md-2" #newLatitute type="number" step="0.0000001" name="newLatitute" placeholder="new Latitute">
+  <input class="form-control col-md-2" #newLongitude type="number" step="0.0000001" name="newLongitude" placeholder="new Longitude">
+  <input class="form-control col-md-2" #newAltitude type="number" step="0.0000001" name="newAltitude" placeholder="new Altitude">
   <p-button class="ui-button-rounded ui-button-success" label="Insert new GPS Location" type="submit"
     (click)="insertNewGpsLocation(newLatitute.value, newLongitude.value, newAltitude.value )"></p-button>
 </div>
 
-<p-gmap [options]="options" [style]="{'width':'100%','height':'320px'}"></p-gmap>
-<agm-map [latitude]="lat" [longitude]="lng">
-  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-</agm-map>
+<p-gmap [options]="options" [overlays]="overlays" [style]="{'width':'100%','height':'320px'}"></p-gmap>

@@ -25,6 +25,8 @@ import { EmgComponent } from './emg/emg.component';
 import { GpsComponent } from './gps/gps.component';
 import { AgmCoreModule } from '@agm/core';
 import { GMapModule } from 'primeng/gmap';
+import { RegisterComponent } from './register/register.component';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { GMapModule } from 'primeng/gmap';
     TemperatureComponent,
     EkgComponent,
     EmgComponent,
-    GpsComponent
+    GpsComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

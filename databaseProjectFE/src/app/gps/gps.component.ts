@@ -1,9 +1,7 @@
 import { GPS } from './../model/gps';
 import { GpsService } from './../services/gps.service';
 import { Component, OnInit } from '@angular/core';
-import { stringify } from 'querystring';
-import { EMG } from '../model/emg';
-
+declare var google: any;
 @Component({
   selector: 'app-gps',
   templateUrl: './gps.component.html',
@@ -14,8 +12,7 @@ export class GpsComponent implements OnInit {
   newGpsLocation: GPS = new GPS();
   timeValues: Date[] = [];
   options: any;
-  lat: number = 51.678418;
-  lng: number = 7.809007;
+  overlays: any[];
 
 
   columnDefs = [
@@ -27,10 +24,7 @@ export class GpsComponent implements OnInit {
 
 
   constructor(private gpsService: GpsService) {
-    this.options = {
-      center: { lat: 36.890257, lng: 30.707417 },
-      zoom: 12
-    };
+
   }
 
   ngOnInit() {
@@ -38,16 +32,11 @@ export class GpsComponent implements OnInit {
 
   }
 
-  getGpsLocations() {
+  async getGpsLocations() {
     this.gpsService.getGpsLocationForUser().subscribe(response => {
       this.rowData = response;
-      // response.forEach(e => {
-      //   let location: string;
-      //   location = e.latitude.toString() + ',' + e.longitude.toString() + ',' + e.altitude.toString();
-      //   const timeValue = e.timeValue;
-      //   this.rowData.push({ location, timeValue});
-      // });
       console.log(this.rowData);
+      this.getOptionsAndOverlays();
     });
   }
 
@@ -57,8 +46,9 @@ export class GpsComponent implements OnInit {
   }
 
   updateValues() {
-    this.rowData = [];
-    this.getGpsLocations();
+    // this.rowData = [];
+    // this.getGpsLocations();
+    this.getOptionsAndOverlays();
   }
 
   insertNewGpsLocation(newLatitute: number, newLongitude: number, newAltitude: number) {
@@ -69,5 +59,19 @@ export class GpsComponent implements OnInit {
     this.gpsService.insertNewGPSLocation(this.newGpsLocation).subscribe(resp => {
       console.log(resp);
     });
+  }
+
+  getOptionsAndOverlays() {
+    this.options = {
+      center: { lat: this.rowData[0].latitude, lng: this.rowData[0].longitude },
+      zoom: 12
+    };
+
+    this.overlays = [
+      // new google.maps.Marker({ position: { lat: this.rowData[0].latitude, lng: this.rowData[0].longitude }, title: "Konyaalti" }),
+    ];
+
+    console.log(this.options);
+    console.log(this.overlays);
   }
 }

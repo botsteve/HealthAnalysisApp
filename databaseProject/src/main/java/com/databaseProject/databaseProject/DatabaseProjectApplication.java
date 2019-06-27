@@ -18,29 +18,29 @@ import javax.annotation.PostConstruct;
 @SpringBootApplication
 @EnableSwagger2
 public class DatabaseProjectApplication {
-	@Autowired
-	private UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
 
-	@Autowired
-	private ObjectMapper objectMapper;
+    @Autowired
+    private ObjectMapper objectMapper;
 
-	public static void main(String[] args) {
-		SpringApplication.run(DatabaseProjectApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(DatabaseProjectApplication.class, args);
+    }
 
-	@PostConstruct
-	public void setUp() {
-		objectMapper.registerModule(new JavaTimeModule());
-	}
+    @PostConstruct
+    public void setUp() {
+        objectMapper.registerModule(new JavaTimeModule());
+    }
 
-	@Bean
-	public Docket api() {
-		return new Docket(DocumentationType.SWAGGER_2)
-				.select()
-				.apis(RequestHandlerSelectors.basePackage("com.databaseProject.databaseProject.Controllers"))
-				.paths(PathSelectors.any())
-				.build();
-	}
+    @Bean
+    public Docket api() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.databaseProject.databaseProject.Controllers"))
+                .paths(PathSelectors.any())
+                .build();
+    }
 
 
 }

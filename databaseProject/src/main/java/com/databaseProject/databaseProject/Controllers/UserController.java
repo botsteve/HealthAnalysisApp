@@ -103,4 +103,13 @@ public class UserController {
         return UserMapper.fromEntityToDto(updatedUser);
     }
 
+    @PostMapping("/register")
+    @Transactional
+    public UserDto regiserUser(@RequestBody UserDto userDto) {
+        User newUser = UserMapper.fromDtoToEntity(userDto);
+
+        userRepository.saveAndFlush(newUser);
+        return userDto;
+    }
+
 }

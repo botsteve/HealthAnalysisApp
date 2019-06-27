@@ -1,7 +1,7 @@
+import { User } from './../model/user';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { User } from '../model/user';
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +51,10 @@ export class UserService {
   }
 
   updateUserLoggingOut(): Observable<User> {
-    return this.httpClient.put<User>(this.baseUrl + '/userLoggingOut',null);
+    return this.httpClient.put<User>(this.baseUrl + '/userLoggingOut', null);
+  }
+
+  registerUser(newUser: User): Observable<User> {
+    return this.httpClient.post<User>(this.baseUrl + '/register', newUser);
   }
 }
