@@ -1,6 +1,9 @@
 import { GPS } from './../model/gps';
 import { GpsService } from './../services/gps.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, ViewChild, NgZone, OnInit } from '@angular/core';
+import { MapsAPILoader, AgmMap } from '@agm/core';
+import { GoogleMapsAPIWrapper } from '@agm/core/services';
+
 declare var google: any;
 @Component({
   selector: 'app-gps',
@@ -13,31 +16,44 @@ export class GpsComponent implements OnInit {
   timeValues: Date[] = [];
   options: any;
   overlays: any[];
+  latitude: number;
+  longitude: number;
+  isLoaded: boolean = false;
 
 
   columnDefs = [
-    { headerName: 'Latitude Value', field: 'latitude', sortable: true, enableRowGroup: true, resizable: true },
-    { headerName: 'Longitude Value', field: 'longitude', sortable: true, enableRowGroup: true, resizable: true },
-    { headerName: 'Altitude Value', field: 'altitude', sortable: true, enableRowGroup: true, resizable: true },
-    { headerName: 'Time Value', field: 'timeValue', sortable: true, enableRowGroup: true, resizable: true }
+    { headerName: 'Latitude Value', field: 'latitude', sortable: true, filter: true, resizable: true },
+    { headerName: 'Longitude Value', field: 'longitude', sortable: true, filter: true, resizable: true },
+    { headerName: 'Altitude Value', field: 'altitude', sortable: true, filter: true, resizable: true },
+    { headerName: 'Time Value', field: 'timeValue', sortable: true, filter: true, resizable: true }
   ];
 
 
-  constructor(private gpsService: GpsService) {
+  constructor(private gpsService: GpsService, public mapsApiLoader: MapsAPILoader,
+    private zone: NgZone,
+    private wrapper: GoogleMapsAPIWrapper) {
+    this.mapsApiLoader = mapsApiLoader;
+    this.zone = zone;
+    this.wrapper = wrapper;
+    this.mapsApiLoader.load().then(() => {
+      this.getGpsLocations();
+    });
 
   }
 
   ngOnInit() {
-    this.getGpsLocations();
-
   }
 
   async getGpsLocations() {
-    this.gpsService.getGpsLocationForUser().subscribe(response => {
-      this.rowData = response;
+    await this.gpsService.getGpsLocationForUser().toPromise().then(response => {
+      this.rowData = response
+      console.log(this.rowData + " " + this.rowData[this.rowData.length - 1].latitude + " " + this.rowData[this.rowData.length - 1].longitude);
       console.log(this.rowData);
-      this.getOptionsAndOverlays();
+      this.latitude = this.rowData[this.rowData.length - 1].latitude;
+      this.longitude = this.rowData[this.rowData.length - 1].longitude;
     });
+    this.getOptionsAndOverlays();
+    this.isLoaded = true;
   }
 
 
@@ -46,9 +62,8 @@ export class GpsComponent implements OnInit {
   }
 
   updateValues() {
-    // this.rowData = [];
-    // this.getGpsLocations();
-    this.getOptionsAndOverlays();
+    this.rowData = [];
+    this.getGpsLocations();
   }
 
   insertNewGpsLocation(newLatitute: number, newLongitude: number, newAltitude: number) {
@@ -62,16 +77,19 @@ export class GpsComponent implements OnInit {
   }
 
   getOptionsAndOverlays() {
-    this.options = {
-      center: { lat: this.rowData[0].latitude, lng: this.rowData[0].longitude },
-      zoom: 12
-    };
 
     this.overlays = [
-      // new google.maps.Marker({ position: { lat: this.rowData[0].latitude, lng: this.rowData[0].longitude }, title: "Konyaalti" }),
+      new google.maps.Marker({ position: { lat: Number(this.latitude), lng: Number(this.longitude) }, title: "test" }),
     ];
 
-    console.log(this.options);
-    console.log(this.overlays);
+    this.options = {
+      // center: { lat: 44.43551, lng: 26.05427 },
+      center: { lat: Number(this.latitude), lng: Number(this.longitude) },
+      zoom: 16
+    };
+
+    console.log("OPTIONS : " + this.options.center.lat + " " + this.options.center.lng);
+    console.log("OVERLAYS :" + this.overlays[0].position);
   }
+
 }

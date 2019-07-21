@@ -1,0 +1,36 @@
+<body>
+  <div class="col-8" id="form">
+    <form #registerForm="ngForm">
+
+      <div class="form-input mb-2">
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input [(ngModel)]="userLogin.email" #email='ngModel' name="email" type="email" id="inputEmail"
+          class="form-control" placeholder="Email address" required
+          [pattern]="'^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'">
+        <div *ngIf='registerForm.submitted && email.invalid'>
+          <div class="alert alert-danger" *ngIf='registerForm.submitted && email.errors.required'>
+            Email required.
+          </div>
+
+          <div class="alert alert-danger" *ngIf='email.errors?.pattern?.requiredPattern'>
+            Please provide a valid email address.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-input mb-2">
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input [(ngModel)]="userLogin.password" #password='ngModel' name="password" type="password" id="inputPassword"
+          class="form-control" placeholder="Password" required>
+        <div *ngIf='registerForm.submitted && password.invalid'>
+          <div class="alert alert-danger" *ngIf='registerForm.submitted && password.errors.required'>
+            Password required.
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-sm btn-primary btn-block" type="submit" (click)="register(userLogin, registerForm.valid)">Register!</button>
+
+    </form>
+  </div>
+</body>
