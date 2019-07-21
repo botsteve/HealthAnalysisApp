@@ -26,6 +26,8 @@ import { GpsComponent } from './gps/gps.component';
 import { AgmCoreModule } from '@agm/core';
 import { GMapModule } from 'primeng/gmap';
 import { RegisterComponent } from './register/register.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { GoogleMapsAPIWrapper } from '@agm/core';
 
 
 @NgModule({
@@ -57,9 +59,10 @@ import { RegisterComponent } from './register/register.component';
     GMapModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBJLord40d1O65ZjSdH4BqTpj_85c5v7Yw'
-    })
+    }),
+    NgbModule
   ],
-  providers: [MessageService, UserService],
+  providers: [MessageService, UserService, GoogleMapsAPIWrapper ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
