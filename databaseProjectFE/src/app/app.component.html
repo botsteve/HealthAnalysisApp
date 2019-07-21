@@ -2,5 +2,5 @@
   <app-header> </app-header>
 </div>
 <p-toast position="top-right"></p-toast>
-<router-outlet (window:unload)="doUnload()"></router-outlet>
+<router-outlet (window:unload)="doUnload($event)"></router-outlet>
 
