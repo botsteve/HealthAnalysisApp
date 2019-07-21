@@ -1,5 +1,6 @@
 package com.databaseProject.databaseProject.Controllers;
 
+import com.databaseProject.databaseProject.CONSTANT;
 import com.databaseProject.databaseProject.Dto.TempSensorDto;
 import com.databaseProject.databaseProject.Dto.UserDto;
 import com.databaseProject.databaseProject.Mapper.TempSensorMapper;
@@ -16,7 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@CrossOrigin(origins="http://localhost:4200", allowedHeaders="*")
+@CrossOrigin(origins= CONSTANT.API_ENDPOINT, allowedHeaders="*")
 @RequestMapping("/temperature")
 public class TemperatureController {
 

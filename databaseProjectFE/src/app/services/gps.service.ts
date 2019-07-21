@@ -2,12 +2,13 @@ import { GPS } from './../model/gps';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Constants } from '../common/constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GpsService {
-  private baseUrl: string = 'http://localhost:8080/gps';
+  private baseUrl: string = Constants.API_ENDPOINT + "gps";
   constructor(private httpClient: HttpClient) { }
 
   getGpsLocationForUser(): Observable<GPS[]> {

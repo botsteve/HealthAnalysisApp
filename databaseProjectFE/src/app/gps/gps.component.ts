@@ -66,6 +66,7 @@ export class GpsComponent implements OnInit {
   updateValues() {
     this.rowData = [];
     this.getGpsLocations();
+    window.location.reload();
   }
 
   insertNewGpsLocation(newLatitute: number, newLongitude: number, newAltitude: number) {

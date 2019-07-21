@@ -1,5 +1,6 @@
 package com.databaseProject.databaseProject.Controllers;
 
+import  com.databaseProject.databaseProject.CONSTANT;
 import com.databaseProject.databaseProject.Dto.UserDto;
 import com.databaseProject.databaseProject.Mapper.UserMapper;
 import com.databaseProject.databaseProject.Model.User;
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@CrossOrigin(origins="http://localhost:4200", allowedHeaders="*")
+@CrossOrigin(origins= CONSTANT.API_ENDPOINT, allowedHeaders="*")
 @RequestMapping("/users")
 public class UserController {
     @Autowired
@@ -83,6 +84,18 @@ public class UserController {
         User user = userRepository.findByEmail(email);
         user = userRepository.getOne(user.getId());
         user.setIsLogged(1);
+        userRepository.save(user);
+        return UserMapper.fromEntityToDto(user);
+    }
+
+    @PutMapping("/userChange")
+    @Transactional
+    public UserDto updateUser(@RequestParam String firstName, @RequestParam String lastName){
+        UserDto userDto = getLoggedUser();
+        User user = userRepository.findByEmail(userDto.getEmail());
+        user = userRepository.getOne(user.getId());
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
         userRepository.save(user);
         return UserMapper.fromEntityToDto(user);
     }

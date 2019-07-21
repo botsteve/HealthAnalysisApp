@@ -2,7 +2,7 @@
     <nav class="menu">
       <ul class="clearfix">
         <li>
-          <a class="nav-link" [routerLink]="['/home']" routerLinkActive="current-item">Home</a>
+          <a class="nav-link" [routerLink]="[ '/myprofile' ]" routerLinkActive="current-item">MyProfile</a>
         </li>
         <li>
           <a class="nav-link" [routerLink]="[ '/temperature' ]" routerLinkActive="current-item">Temperature</a>
@@ -15,9 +15,6 @@
         </li>
         <li>
           <a class="nav-link" [routerLink]="[ '/gps' ]" routerLinkActive="current-item">GPS</a>
-        </li>
-        <li>
-          <a class="nav-link" [routerLink]="[ '/my_profile' ]" routerLinkActive="current-item">MyProfile</a>
         </li>
         <li>
           <a class="nav-link"  (click)="signOut()" routerLinkActive="current-item">Sign Out</a>

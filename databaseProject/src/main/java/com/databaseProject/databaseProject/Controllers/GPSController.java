@@ -1,5 +1,6 @@
 package com.databaseProject.databaseProject.Controllers;
 
+import com.databaseProject.databaseProject.CONSTANT;
 import com.databaseProject.databaseProject.Dto.GPSDto;
 import com.databaseProject.databaseProject.Mapper.GPSMapper;
 import com.databaseProject.databaseProject.Model.GPS;
@@ -14,7 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@CrossOrigin(origins="http://localhost:4200", allowedHeaders="*")
+@CrossOrigin(origins= CONSTANT.API_ENDPOINT, allowedHeaders="*")
 @RequestMapping("/gps")
 public class GPSController {
 

@@ -1,13 +1,14 @@
 import { User } from './../model/user';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Constants } from '../common/constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private baseUrl: string = 'http://localhost:8080/users';
+  private baseUrl: string = Constants.API_ENDPOINT + "users";
   loggedUser: User = new User();
 
   constructor(private httpClient: HttpClient) {
@@ -34,9 +35,6 @@ export class UserService {
     return this.httpClient.post<User>(this.baseUrl, user);
   }
 
-  updateUser(user: User): Observable<User> {
-    return this.httpClient.put<User>(this.baseUrl, user);
-  }
 
   getUserByEmail(email: String): Observable<User> {
     return this.httpClient.get<User>(this.baseUrl + '/emails?email=' + email);
@@ -48,6 +46,11 @@ export class UserService {
 
   updateUserLoggedIn(email: String): Observable<User> {
     return this.httpClient.put<User>(this.baseUrl + '/user', email);
+  }
+
+  updateUser(firstName: string, lastName: string): Observable<User> {
+    let params = new HttpParams().set("firstName",firstName).set("lastName",lastName);
+    return this.httpClient.put<User>(this.baseUrl + '/userChange', null, {params});
   }
 
   updateUserLoggingOut(): Observable<User> {

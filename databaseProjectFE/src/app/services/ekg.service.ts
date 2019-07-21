@@ -1,3 +1,4 @@
+import { Constants } from './../common/constants';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -7,7 +8,7 @@ import { EKG } from '../model/ekg';
   providedIn: 'root'
 })
 export class EkgService {
-  private baseUrl: string = 'http://localhost:8080/ekg';
+  private baseUrl: string = Constants.API_ENDPOINT + "ekg";
   constructor(private httpClient: HttpClient) { }
 
   getEkgForUser(): Observable<EKG[]> {

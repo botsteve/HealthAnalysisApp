@@ -4,7 +4,32 @@
 @import "~ag-grid-community/dist/styles/ag-theme-balham.css";
 
 #form {
-  margin:auto;
-  padding:15%;
+  margin: auto;
+  padding: 15%;
 }
 
+.app-name {
+  background: url("src/assets/images/image_3.jpg") top left no-repeat;
+  padding: 5px 50px;
+  background-size: cover;
+  font-size: 17px;
+  width: 100%;
+
+  a {
+    color: #000;
+    text-decoration: underline;
+  }
+  h1 {
+    margin-bottom: 0;
+    display: inline-block;
+  }
+
+}
+
+img.right {
+  float: right;
+}
+
+img.left {
+  float: left;
+}

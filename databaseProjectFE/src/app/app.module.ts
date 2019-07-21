@@ -5,7 +5,6 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { AccordionModule } from 'primeng/components/accordion/accordion';
 import { PanelModule } from 'primeng/components/panel/panel';
@@ -28,19 +27,22 @@ import { GMapModule } from 'primeng/gmap';
 import { RegisterComponent } from './register/register.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GoogleMapsAPIWrapper } from '@agm/core';
+import { MyprofileComponent } from './myprofile/myprofile.component';
+import { HeaderComponent } from './common/header/header.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     LoginComponent,
     TopNavComponent,
     TemperatureComponent,
     EkgComponent,
     EmgComponent,
     GpsComponent,
-    RegisterComponent
+    RegisterComponent,
+    MyprofileComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

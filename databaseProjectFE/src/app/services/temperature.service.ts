@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { User } from '../model/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Constants } from '../common/constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TemperatureService {
-  private baseUrl: string = 'http://localhost:8080/temperature';
+  private baseUrl: string = Constants.API_ENDPOINT + "temperature";
   loggedUser: User = new User();
 
 

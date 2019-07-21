@@ -3,7 +3,6 @@ import { User } from '../model/user';
 import { UserService } from '../services/user.service';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
-import { resolve } from 'dns';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +18,7 @@ export class RegisterComponent implements OnInit {
   }
 
 
-  async register(newUser: User, isFormValid) {
+  register(newUser: User, isFormValid) {
 
     if (!isFormValid) {
       this.messageService.add({ severity: 'error', summary: 'Error.' });
@@ -30,8 +29,10 @@ export class RegisterComponent implements OnInit {
         if (user != null) {
           this.messageService.add({ severity: 'error', summary: 'Email address registered.' });
         } else {
-          this.userService.registerUser(this.userLogin).toPromise();
-          this.router.navigate(['/login']);
+          this.userService.registerUser(this.userLogin).subscribe(() => {
+            this.router.navigate(['/login']);
+          });
+
         }
       });
 

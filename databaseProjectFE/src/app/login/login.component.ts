@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
             this.messageService.add({ severity: 'success', summary: 'Login successful' });
             console.log(this.userLogin.email);
             this.userService.updateUserLoggedIn(this.userLogin.email).subscribe(() => {
-              this.router.navigate(['/home']);
+              this.router.navigate(['/myprofile']);
             });
           }
         }
