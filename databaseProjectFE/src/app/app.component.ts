@@ -19,7 +19,7 @@ export class AppComponent{
 
 
   @HostListener('window:beforeunload', ['$event'])
-    public doUnload($event) {
+    public doUnload(event) {
       this.userService.updateUserLoggingOut().subscribe(() => {
         this.router.navigate(['/login']);
       });
