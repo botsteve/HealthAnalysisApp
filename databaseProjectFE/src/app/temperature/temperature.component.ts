@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TemperatureService } from '../services/temperature.service';
 import { Temperature } from '../model/temperature';
-import { AgGridModule } from 'ag-grid-angular';
 
 const Mcp9808 = require('mcp9808-temperature-sensor');
 

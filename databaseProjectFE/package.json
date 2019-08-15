@@ -28,6 +28,7 @@
     "bootstrap": "^4.3.1",
     "chart.js": "^2.8.0",
     "font-awesome": "^4.7.0",
+    "fs": "0.0.1-security",
     "mcp9808-temperature-sensor": "^1.0.9",
     "primeflex": "^1.0.0-rc.1",
     "primeicons": "^1.0.0",
@@ -57,5 +58,15 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "typescript": "~3.4.3"
+  },
+  "browser": {
+    "http": false,
+    "https": false,
+    "net": false,
+    "path": false,
+    "stream": false,
+    "tls": false,
+    "fs": false,
+    "os": false
   }
 }
