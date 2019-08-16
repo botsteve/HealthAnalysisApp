@@ -1683,7 +1683,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var Mcp9808 = __webpack_require__(/*! mcp9808-temperature-sensor */ "./node_modules/mcp9808-temperature-sensor/mcp9808-temperature-sensor.js");
+// const Mcp9808 = require('mcp9808-temperature-sensor');
 var TemperatureComponent = /** @class */ (function () {
     function TemperatureComponent(temperatureService) {
         this.temperatureService = temperatureService;
@@ -1752,19 +1752,19 @@ var TemperatureComponent = /** @class */ (function () {
         });
     };
     TemperatureComponent.prototype.log = function () {
-        var tempSensor;
-        Mcp9808.open({
-            i2cBusNumber: 1,
-            i2cAddress: 0x18 // optional, default 0x18
-        }).then(function (sensor) {
-            tempSensor = sensor;
-            return tempSensor.temperature();
-        }).then(function (temp) {
-            console.log(temp.celsius + '°C');
-            return tempSensor.close();
-        }).catch(function (err) {
-            console.log(err.stack);
-        });
+        //   let  tempSensor: any;
+        //   Mcp9808.open({
+        //     i2cBusNumber: 1, // optional, default 1
+        //     i2cAddress: 0x18 // optional, default 0x18
+        //   }).then((sensor) => {
+        //     tempSensor = sensor;
+        //     return tempSensor.temperature();
+        //   }).then((temp) => {
+        //     console.log(temp.celsius + '°C');
+        //     return tempSensor.close();
+        //   }).catch((err) => {
+        //     console.log(err.stack);
+        //   });
     };
     TemperatureComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1844,72 +1844,6 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 
 module.exports = __webpack_require__(/*! C:\Users\valve\OneDrive\Documents\GIT\databaseProject\databaseProjectFE\src\main.ts */"./src/main.ts");
 
-
-/***/ }),
-
-/***/ 1:
-/*!********************!*\
-  !*** fs (ignored) ***!
-  \********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/* (ignored) */
-
-/***/ }),
-
-/***/ 2:
-/*!********************!*\
-  !*** os (ignored) ***!
-  \********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/* (ignored) */
-
-/***/ }),
-
-/***/ 3:
-/*!********************!*\
-  !*** fs (ignored) ***!
-  \********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/* (ignored) */
-
-/***/ }),
-
-/***/ 4:
-/*!**********************!*\
-  !*** path (ignored) ***!
-  \**********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/* (ignored) */
-
-/***/ }),
-
-/***/ 5:
-/*!**********************!*\
-  !*** path (ignored) ***!
-  \**********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/* (ignored) */
-
-/***/ }),
-
-/***/ 6:
-/*!********************!*\
-  !*** fs (ignored) ***!
-  \********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/* (ignored) */
 
 /***/ })
 

@@ -755,7 +755,7 @@ if(false) {}
 
 /***/ }),
 
-/***/ 8:
+/***/ 2:
 /*!*****************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** multi ./node_modules/primeicons/primeicons.css ./node_modules/primeng/resources/themes/nova-light/theme.css ./node_modules/primeng/resources/primeng.min.css ./node_modules/primeflex/primeflex.css ./node_modules/bootstrap/dist/css/bootstrap.min.css ./styles.scss ***!
   \*****************************************************************************************************************************************************************************************************************************************************************************/
@@ -772,5 +772,5 @@ module.exports = __webpack_require__(/*! C:\Users\valve\OneDrive\Documents\GIT\d
 
 /***/ })
 
-},[[8,"runtime"]]]);
+},[[2,"runtime"]]]);
 //# sourceMappingURL=styles-es2015.js.map
