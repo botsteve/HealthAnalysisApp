@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { TemperatureService } from '../services/temperature.service';
 import { Temperature } from '../model/temperature';
 
-const Mcp9808 = require('mcp9808-temperature-sensor');
 
 
 @Component({
@@ -92,20 +91,6 @@ export class TemperatureComponent implements OnInit {
 
 
   log(){
-    let  tempSensor: any;
-    Mcp9808.open({
-      i2cBusNumber: 1, // optional, default 1
-      i2cAddress: 0x18 // optional, default 0x18
-    }).then((sensor) => {
-      tempSensor = sensor;
-      return tempSensor.temperature();
-    }).then((temp) => {
-      console.log(temp.celsius + '°C');
-      return tempSensor.close();
-    }).catch((err) => {
-      console.log(err.stack);
-    });
   }
-
 
 }
