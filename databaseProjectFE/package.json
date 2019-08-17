@@ -28,7 +28,6 @@
     "bindings": "^1.5.0",
     "bootstrap": "^4.3.1",
     "chart.js": "^2.8.0",
-    "epoll": "^2.0.9",
     "file-system": "^2.2.2",
     "font-awesome": "^4.7.0",
     "primeflex": "^1.0.0-rc.1",
