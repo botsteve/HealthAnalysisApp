@@ -30,7 +30,12 @@ SoftwareSerial mySerial(8, 7);
 int sensorPin = A0;
 int sensorValue = 0;  // variable to store the value coming from the sensor
 
+unsigned long delay1 = 10000;
+unsigned long delay2 = 1800000; //30 minutes in miliseconds
+unsigned long t1, t2;
+
 void setup() {
+  t1 = t2 = millis();
   while (!Serial); // wait for Serial to be ready
 
   Serial.begin(57600); // this baud rate doesn't actually matter!
@@ -47,6 +52,29 @@ void setup() {
 }
 
 void loop() {
+  if(millis() - t1 > delay1) { //this will be executed every delay1 ms
+    getMedicalParameters();
+    t1 = millis();
+  }
+
+  getGpsLocation();
+
+}
+
+void getMedicalParameters (void) {
+  float ECG = eHealth.getECG();
+  sensorValue = analogRead(sensorPin);
+  Serial.println('------------------------------------------');  
+  Serial.println(' ');
+  Serial.print("EMG=");
+  Serial.println(sensorValue);
+
+  Serial.print("ECG=");
+  Serial.println(ECG, 2);
+  Serial.println('-------------------------------------------'); 
+}
+
+void getGpsLocation (void) {
   if (Serial.available()) {
     char c = Serial.read();
     Serial.write(c);
@@ -56,16 +84,7 @@ void loop() {
     char c = mySerial.read();
     Serial.write(c);
   }
-  //read the value from the sensor:
-  float ECG = eHealth.getECG();
-  sensorValue = analogRead(sensorPin);    
-
-  Serial.print("EMG=");
-  Serial.println(sensorValue);
-
-  Serial.print("ECG=");
-  Serial.println(ECG, 2);
-  delay(4000);  
-
 }
+
+
 
