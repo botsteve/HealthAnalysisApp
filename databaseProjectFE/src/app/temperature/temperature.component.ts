@@ -78,7 +78,6 @@ export class TemperatureComponent implements OnInit {
 
   updateValues(){
     this.getTemperatures();
-    this.log();
   }
 
   insertNewTemp(newTemp: number){
@@ -89,8 +88,5 @@ export class TemperatureComponent implements OnInit {
     });
   }
 
-
-  log(){
-  }
 
 }
