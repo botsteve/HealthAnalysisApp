@@ -6,7 +6,7 @@ import pynmea2
 import requests
 import json
 
-serLeo= serial.Serial('/dev/ttyACM1', 57600)
+serLeo= serial.Serial('/dev/ttyACM0', 57600)
 urlGps = 'http://192.168.43.103:8080/gps'
 headers = {'content-type':'applicatio/json'}
 
@@ -35,7 +35,7 @@ while True:
 			}
 			print(newGpsTemp) 
         		print(" " +str(tempLocation.latitude) + " " + str(tempLocation.longitude) + " " + str(tempLocation.altitude))
-			y = requests.post(urlGps, json=newGpsTemp, headers=headers)
+			y = requests.post(urlGps, json=newGpsTemp)
 			#lat  = newmsg.latitude
 			print(y.text)
 			#lng  = newmsg.longitude
