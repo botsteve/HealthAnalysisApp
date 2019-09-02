@@ -8,7 +8,7 @@ import json
 
 serLeo= serial.Serial('/dev/ttyACM0', 57600)
 urlGps = 'http://192.168.43.103:8080/gps'
-headers = {'content-type':'applicatio/json'}
+headers = {'content-type':'application/json'}
 
 class GPS(object):
 	latitude = 0
@@ -25,7 +25,7 @@ while True:
 		gpsLine = serLeo.readline()
 		print(gpsLine)
 		if(gpsLine[0:6] == '$GPGGA'):
-			#print("Am intrat in GPS CASE")
+			print("GPS CASE")
 			newmsg = pynmea2.parse(gpsLine)
 			tempLocation = GPS(newmsg.latitude, newmsg.longitude, newmsg.altitude)
 			newGpsTemp =  {
@@ -34,9 +34,7 @@ while True:
 			"altitude": newmsg.altitude
 			}
 			print(newGpsTemp) 
-        		print(" " +str(tempLocation.latitude) + " " + str(tempLocation.longitude) + " " + str(tempLocation.altitude))
+        	print(" " +str(tempLocation.latitude) + " " + str(tempLocation.longitude) + " " + str(tempLocation.altitude))
 			y = requests.post(urlGps, json=newGpsTemp)
-			#lat  = newmsg.latitude
 			print(y.text)
-			#lng  = newmsg.longitude
-			#print(lng)
+			time.sleep(10.0)
