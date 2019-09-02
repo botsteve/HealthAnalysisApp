@@ -1,7 +1,16 @@
-#include <eHealth.h>
+// Test code for Adafruit GPS modules using MTK3329/MTK3339 driver
+//
+// This code just echos whatever is coming from the GPS unit to the
+// serial monitor, handy for debugging!
+//
+// Tested and works great with the Adafruit Ultimate GPS module
+// using MTK33x9 chipset
+//    ------> http://www.adafruit.com/products/746
+// Pick one up today at the Adafruit electronics shop
+// and help support open source hardware & software! -ada
+
 #include <Adafruit_GPS.h>
 #include <SoftwareSerial.h>
-
 
 // Connect the GPS Power pin to 5V
 // Connect the GPS Ground pin to ground
@@ -26,16 +35,12 @@ SoftwareSerial mySerial(8, 7);
 
 #define PMTK_Q_RELEASE "$PMTK605*31"
 
-
-int sensorPin = A0;
-int sensorValue = 0;  // variable to store the value coming from the sensor
-
 void setup() {
   while (!Serial); // wait for Serial to be ready
 
   Serial.begin(57600); // this baud rate doesn't actually matter!
   mySerial.begin(9600);
-  delay(100);
+  delay(2000);
   Serial.println("Get version!");
   mySerial.println(PMTK_Q_RELEASE);
 
@@ -43,29 +48,18 @@ void setup() {
   //mySerial.println(PMTK_SET_NMEA_OUTPUT_RMCGGA);
   mySerial.println(PMTK_SET_NMEA_OUTPUT_ALLDATA);
 
-  mySerial.println(PMTK_SET_NMEA_UPDATE_1HZ); 
-}
+  mySerial.println(PMTK_SET_NMEA_UPDATE_1HZ);
+ }
+
 
 void loop() {
   if (Serial.available()) {
-    char c = Serial.read();
-    Serial.write(c);
-    mySerial.write(c);
+   char c = Serial.read();
+   Serial.write(c);
+   mySerial.write(c);
   }
   if (mySerial.available()) {
     char c = mySerial.read();
     Serial.write(c);
   }
-  //read the value from the sensor:
-  float ECG = eHealth.getECG();
-  sensorValue = analogRead(sensorPin);    
-
-  Serial.print("EMG=");
-  Serial.println(sensorValue);
-
-  Serial.print("ECG=");
-  Serial.println(ECG, 2);
-  delay(4000);  
-
 }
-
