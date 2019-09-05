@@ -32,7 +32,8 @@ while True:
 			print(ekg.text)
 		elif(line[0:3]=='EMG'):
 			print("EMG")
-			emg = requests.post(urlEMG,line[4:],headers=headers)
+			voltageEmg = line[4:] * ( 5 / 1024)
+			emg = requests.post(urlEMG,voltageEmg,headers=headers)
 			print(emg.text)
 		
 	x = requests.post(urlTemperature, json=temp)
