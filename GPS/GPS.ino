@@ -12,12 +12,7 @@
 #include <Adafruit_GPS.h>
 #include <SoftwareSerial.h>
 
-// Connect the GPS Power pin to 5V
-// Connect the GPS Ground pin to ground
-// Connect the GPS TX (transmit) pin to Digital 8
-// Connect the GPS RX (receive) pin to Digital 7
 
-// You can change the pin numbers to match your wiring:
 SoftwareSerial mySerial(8, 7);
 
 #define PMTK_SET_NMEA_UPDATE_1HZ  "$PMTK220,1000*1F"
@@ -41,12 +36,11 @@ void setup() {
   Serial.begin(57600); // this baud rate doesn't actually matter!
   mySerial.begin(9600);
   delay(2000);
-  Serial.println("Get version!");
+  Serial.println("GPS ON");
   mySerial.println(PMTK_Q_RELEASE);
 
-  // you can send various commands to get it started
-  //mySerial.println(PMTK_SET_NMEA_OUTPUT_RMCGGA);
-  mySerial.println(PMTK_SET_NMEA_OUTPUT_ALLDATA);
+  mySerial.println(PMTK_SET_NMEA_OUTPUT_RMCGGA);
+  //mySerial.println(PMTK_SET_NMEA_OUTPUT_ALLDATA);
 
   mySerial.println(PMTK_SET_NMEA_UPDATE_1HZ);
  }

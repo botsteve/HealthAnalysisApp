@@ -2,7 +2,6 @@ import os
 import time
 import serial
 import string
-import pynmea2
 import requests
 import json
 import Adafruit_MCP9808.MCP9808 as MCP9808
@@ -20,7 +19,6 @@ def c_to_f(c):
 	return c * 9.0 / 5.0 + 32.0
 
 while True:
-	dataout = pynmea2.NMEAStreamReader()
 	temp = sensor.readTempC()
 	
 	if(serArd.in_waiting >0):
