@@ -34,7 +34,7 @@ while True:
 			"altitude": newmsg.altitude
 			}
 			print(newGpsTemp) 
-        	print(" " +str(tempLocation.latitude) + " " + str(tempLocation.longitude) + " " + str(tempLocation.altitude))
+        		print(" " +str(tempLocation.latitude) + " " + str(tempLocation.longitude) + " " + str(tempLocation.altitude))
 			y = requests.post(urlGps, json=newGpsTemp)
 			print(y.text)
 			time.sleep(10.0)

@@ -24,8 +24,8 @@ while True:
 	temp = sensor.readTempC()
 	
 	if(serArd.in_waiting >0):
-        line = serArd.readline()
-        print(line)
+	        line = serArd.readline()
+        	print(line)
 		if(line[0:3]=='ECG'):
 			print("ECG")
 			ekg = requests.post(urlEKG,line[4:],headers=headers)
